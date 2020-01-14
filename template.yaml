@@ -1,0 +1,72 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  lambda-publish-amazonmq
+
+  Sample SAM app for deploying an AmazonMQ broker with an AWS Lambda function for publishing messages to MQTT.
+
+Parameters:
+  AdminUsername:
+    Type: String
+    Default: "admin"
+    Description: (Required) A username for AmazonMQ console access.
+
+  AdminPassword:
+    Type: String
+    Default: "MySuperSecurePassword"
+    Description: (Required) A password for AmazonMQ console access. 12 characters and at least 4 unique characters
+
+  ClientUsername:
+    Type: String
+    Default: "client"
+    Description: (Required) A username for a connecting client.
+
+  ClientPassword:
+    Type: String
+    Default: "MySuperSecurePassword"
+    Description: (Required) A password for a connecting client. 12 characters and at least 4 unique characters
+
+Resources:
+  PublishMessageFunction:
+    Type: AWS::Serverless::Function
+    DependsOn: BasicBroker
+    Properties:
+      CodeUri: src/PublishMessage
+      Handler: app.lambdaHandler
+      Runtime: nodejs10.x
+      Environment:
+        Variables:
+          MQ_HOST: !Sub "${BasicBroker}-1.mq.${AWS::Region}.amazonaws.com"
+          MQ_USERNAME: !Ref AdminUsername
+          MQ_PASSWORD: !Ref AdminPassword
+
+  BasicBroker:
+    Type: "AWS::AmazonMQ::Broker"
+    Properties:
+      BrokerName: !Sub "${AWS::StackName}-MqBroker"
+      AutoMinorVersionUpgrade: "false"
+      DeploymentMode: SINGLE_INSTANCE
+      EngineType: ActiveMQ
+      EngineVersion: "5.15.0"
+      HostInstanceType: mq.t2.micro
+      PubliclyAccessible: "true"
+      Users:
+        -
+          ConsoleAccess: "true"
+          Groups:
+            - MyGroup
+          Password: !Ref AdminPassword
+          Username: !Ref AdminUsername
+        -
+          Groups:
+            - MyGroup
+          Password: !Ref ClientPassword
+          Username: !Ref ClientUsername
+
+Outputs:
+  PublishMessageFunction:
+    Description: "A function that publishes message to an MQ broker using MQTT."
+    Value: !GetAtt PublishMessageFunction.Arn
+  BasicBroker:
+    Description: "A basic AmazonMQ broker."
+    Value: !GetAtt BasicBroker.Arn

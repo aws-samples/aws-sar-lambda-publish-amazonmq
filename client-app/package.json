@@ -1,0 +1,12 @@
+{
+  "name": "client-example",
+  "version": "1.0.0",
+  "description": "Subscribe to an AmazonMQ broker using mqtt websockets",
+  "main": "app.js",
+  "license": "MIT",
+  "author": "Moheeb Zara, Amazon Web Services",
+  "dependencies": {
+    "mqtt": "^3.0.0",
+    "uuid": "^3.3.2"
+  }
+}

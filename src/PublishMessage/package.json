@@ -1,0 +1,11 @@
+{
+  "name": "PublishMessage",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "author": "Moheeb Zara, Amazon Web Services",
+  "dependencies": {
+    "mqtt": "^3.0.0",
+    "uuid": "^3.3.2"
+  }
+}

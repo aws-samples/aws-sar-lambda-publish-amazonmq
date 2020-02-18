@@ -30,7 +30,7 @@ Resources:
     Type: AWS::Serverless::Function
     DependsOn: BasicBroker
     Properties:
-      CodeUri: s3://iot-test-mo/caf3d1c72c1f3ef90da428fbc31fdf3c
+      CodeUri: s3://iot-test-mo/a77eda41a5c53ec598f156d3c07e6936
       Handler: app.lambdaHandler
       Runtime: nodejs10.x
       Environment:

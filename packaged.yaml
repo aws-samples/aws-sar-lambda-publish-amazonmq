@@ -32,7 +32,7 @@ Resources:
     Properties:
       CodeUri: s3://iot-test-mo/a77eda41a5c53ec598f156d3c07e6936
       Handler: app.lambdaHandler
-      Runtime: nodejs10.x
+      Runtime: nodejs14.x
       Environment:
         Variables:
           MQ_HOST:

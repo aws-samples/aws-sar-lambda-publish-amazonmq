@@ -8,13 +8,9 @@ Description: >
 Parameters:
   AdminUsername:
     Type: String
-    Default: "admin"
-    Description: (Required) A username for AmazonMQ console access.
 
   AdminPassword:
     Type: String
-    Default: "MySuperSecurePassword"
-    Description: (Required) A password for AmazonMQ console access. 12 characters and at least 4 unique characters
 
   ClientUsername:
     Type: String
@@ -23,8 +19,7 @@ Parameters:
 
   ClientPassword:
     Type: String
-    Default: "MySuperSecurePassword"
-    Description: (Required) A password for a connecting client. 12 characters and at least 4 unique characters
+    Description: (Required) For a connecting client. 12 characters and at least 4 unique characters
 
 Resources:
   PublishMessageFunction:

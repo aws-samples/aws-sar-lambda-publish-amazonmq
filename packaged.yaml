@@ -9,22 +9,15 @@ Description: 'lambda-publish-amazonmq
 Parameters:
   AdminUsername:
     Type: String
-    Default: admin
-    Description: (Required) A username for AmazonMQ console access.
   AdminPassword:
     Type: String
-    Default: MySuperSecurePassword
-    Description: (Required) A password for AmazonMQ console access. 12 characters
-      and at least 4 unique characters
   ClientUsername:
     Type: String
     Default: client
     Description: (Required) A username for a connecting client.
   ClientPassword:
     Type: String
-    Default: MySuperSecurePassword
-    Description: (Required) A password for a connecting client. 12 characters and
-      at least 4 unique characters
+
 Resources:
   PublishMessageFunction:
     Type: AWS::Serverless::Function

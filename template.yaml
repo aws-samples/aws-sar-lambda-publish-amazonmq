@@ -5,19 +5,25 @@ Description: >
 
   Sample SAM app for deploying an AmazonMQ broker with an AWS Lambda function for publishing messages to MQTT.
 
+## Before deploying, create Admin and Client usernames and passwords in Secrets manager. This template will look for /app/<value> by default.
+
 Parameters:
   AdminUsername:
-    Type: String
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /app/AdminUserName
 
   AdminPassword:
-    Type: String
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /app/AdminPassword
 
   ClientUsername:
-    Type: String
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /app/ClientUserName
     Description: (Required) A username for a connecting client.
 
   ClientPassword:
-    Type: String
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /app/ClientPassword
     Description: (Required) For a connecting client. 12 characters and at least 4 unique characters
 
 Resources:

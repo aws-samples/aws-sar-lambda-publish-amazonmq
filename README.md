@@ -34,6 +34,8 @@ Deploy an Amazon MQ broker and an AWS Lambda function that can publish to it. Th
 
 ## Parameter Details
 
+**Before deploying, create Admin and Client usernames and passwords in Secrets manager. This template will look for /app/*value* by default.**
+
 * AdminUsername: (Required) A username for AmazonMQ console access.
 * AdminPassword: (Required) A password for AmazonMQ console access. 12 characters and at least 4 unique characters.
 * ClientUsername: (Required) A username for a client.

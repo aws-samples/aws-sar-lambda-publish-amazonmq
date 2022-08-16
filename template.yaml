@@ -14,7 +14,6 @@ Parameters:
 
   ClientUsername:
     Type: String
-    Default: "client"
     Description: (Required) A username for a connecting client.
 
   ClientPassword:
@@ -28,7 +27,7 @@ Resources:
     Properties:
       CodeUri: src/PublishMessage
       Handler: app.lambdaHandler
-      Runtime: nodejs10.x
+      Runtime: nodejs16.x
       Environment:
         Variables:
           MQ_HOST: !Sub "${BasicBroker}-1.mq.${AWS::Region}.amazonaws.com"

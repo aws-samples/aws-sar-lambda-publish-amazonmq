@@ -11,20 +11,24 @@ Parameters:
   AdminUsername:
     Type: AWS::SSM::Parameter::Value<String>
     Default: /app/AdminUserName
+    NoEcho: true
 
   AdminPassword:
     Type: AWS::SSM::Parameter::Value<String>
     Default: /app/AdminPassword
+    NoEcho: true
 
   ClientUsername:
     Type: AWS::SSM::Parameter::Value<String>
     Default: /app/ClientUserName
     Description: (Required) A username for a connecting client.
+    NoEcho: true
 
   ClientPassword:
     Type: AWS::SSM::Parameter::Value<String>
     Default: /app/ClientPassword
-    Description: (Required) For a connecting client. 12 characters and at least 4 unique characters
+    Description: (Required) For a connecting client. 12 characters and at least 4 unique characters.
+    NoEcho: true
 
 Resources:
   PublishMessageFunction:
